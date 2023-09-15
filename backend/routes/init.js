@@ -8,9 +8,6 @@ const router = express.Router()
 // Initialises database with collections if it doesn't already exist
 // - petitions - users
 router.get('', async (req, res) => {
-    // TODO: test that you can create petition and user
-    // TODO: init from database instead of from here
-
     await connectDatabase(res)
     let response = ""
     try {
