@@ -23,33 +23,36 @@ const router = express.Router()
  */
 router.post('', async (req, res) => {
     await connectDatabase(res)
+    let response = [];
     try {
-        console.log("trying")
         const { userId, petition } = req.body;
-            let newPetition = await Petitions.create(petition);
-            let petitionId = newPetition._id;
-            await addPetitionToUser(userId, petitionId);
+        response.push(req.body);
+        response.push(petition);
+        let newPetition = await Petitions.create(petition);
+        response.push(newPetition);
+        let petitionId = newPetition._id;
+        await addPetitionToUser(userId, petitionId, response);
         res.status(200).send("Created Petition " + petition.title);
     } catch (error) {
-        console.error(error);
-        res.status(400).send("Couldn't create petition")
+        response.push("error" + error);
+        res.status(400).send(response);
 
     } finally {
         mongoose.connection.close()
     }
 });
 
-async function addPetitionToUser(userId, petitionId) {
+async function addPetitionToUser(userId, petitionId, response) {
     try {
         const user = await Users.findById(userId);
         if (!user) {
-            console.error('User not found');
+            response.push('User not found');
             return;
         }
 
         const petition = await Petitions.findById(petitionId);
         if (!petition) {
-            console.error('Petition not found');
+            response.push('Petition not found');
             return;
         }
 
@@ -57,9 +60,9 @@ async function addPetitionToUser(userId, petitionId) {
 
         await user.save();
 
-        console.log(`Added petition to user's created petitions: User ID ${userId}, Petition ID ${petitionId}`);
+        response.push(`Added petition to user's created petitions: User ID ${userId}, Petition ID ${petitionId}`);
     } catch (error) {
-        console.error('Error:', error);
+        response.push('Error:', error);
     }
 }
 

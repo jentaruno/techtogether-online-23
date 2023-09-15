@@ -6,6 +6,7 @@ const getPetitionRouter = require('./routes/getPetition')
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 app.use('/init', initRouter);
 app.use('/petitions/create', createPetitionRouter);
