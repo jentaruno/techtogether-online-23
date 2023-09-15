@@ -5,8 +5,9 @@ const {connectDatabase} = require("../utils");
 const mongoose = require("mongoose");
 
 // Takes petition ID
-// Returns petition schema
+// Deletes petition
 router.delete('/:petitionId', async (req, res) => {
+    // TODO: delete from creator's created list, as well as signer's signed list
     await connectDatabase(res)
     try {
         const deletedPetition = await Petitions.findByIdAndDelete(req.params.petitionId);
