@@ -14,10 +14,15 @@ export default function Login() {
     </main>;
 
     if (user) {
+        console.log(user);
         return (
             <main className={styles.main}>
                 <div>
-                    Welcome {user.name}! <a href="/api/auth/logout">Logout</a>
+                    <p>Welcome!</p>
+                    <img src={user.picture}/>
+                    <p>{user.name}</p>
+                    <p>{user.email}</p>
+                    <a href="/api/auth/logout">Logout</a>
                 </div>
             </main>
         );
