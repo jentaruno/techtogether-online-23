@@ -7,15 +7,12 @@ const router = express.Router()
 // Input userId and new user
 // Updates existing user in DB
 router.patch('/:userId', async (req, res) => {
-    await connectDatabase(res)
+    await connectDatabase(res);
     try {
-        const userToChange = await Users.findById(req.params.userId).exec();
-        const editedUser = req.body
+        const userToChange = await Users.findByIdAndUpdate(req.params.userId, req.body);
         if (!userToChange) {
             res.status(400).send("User not found");
         } else {
-            userToChange = editedUser;
-            await userToChange.save();
             res.status(200).send("Edited User " + userToChange.name);    
         }
     } catch (error) {
@@ -25,3 +22,5 @@ router.patch('/:userId', async (req, res) => {
         mongoose.connection.close();
     }
 });
+
+module.exports = router;

@@ -16,7 +16,7 @@ router.get('', async (req, res) => {
     let response = ""
     try {
 
-        UserFuncs.newUser("Joe", "Joe@gmail.com", "some company", "some position", ["first tag","second tag"]);
+        //UserFuncs.newUser("Joe", "Joe@gmail.com", "some company", "some position", ["first tag","second tag"]);
 
         // const petitions = await Petitions.findOne()
         // if (!petitions) {

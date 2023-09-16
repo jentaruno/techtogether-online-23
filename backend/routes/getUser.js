@@ -7,9 +7,9 @@ const router = express.Router()
 // Input userId
 // Returns user schema
 router.get('/:userId', async (req, res) => {
-    await connectDatabase(res)
+    await connectDatabase(res);
     try {
-        const user = await Users.findById(req.params.userId).exec();
+        const user = await Users.findById(req.params.userId);
         res.status(200).send(user);
     } catch (error) {
         console.error("error" + error);
@@ -18,3 +18,5 @@ router.get('/:userId', async (req, res) => {
         mongoose.connection.close();
     }
 });
+
+module.exports = router;

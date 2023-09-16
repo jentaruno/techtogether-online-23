@@ -7,7 +7,7 @@ const router = express.Router()
 // Input user schema
 // Adds user to DB
 router.post('', async (req, res) => {
-    await connectDatabase(res)
+    await connectDatabase(res);
     try {
         const user = req.body;
         let newUser = await Users.create(user);
@@ -20,3 +20,5 @@ router.post('', async (req, res) => {
         mongoose.connection.close();
     }
 });
+
+module.exports = router;

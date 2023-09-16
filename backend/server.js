@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const initRouter = require('./routes/init');
-const newUserRouter = require('.routes/newUser');
-const editeUserRouter = require('.routes/editUser');
-const getUserRouter = require('.routes/getUser');
+const newUserRouter = require('./routes/newUser');
+const editUserRouter = require('./routes/editUser');
+const getUserRouter = require('./routes/getUser');
 
 const app = express();
 app.use(cors());
