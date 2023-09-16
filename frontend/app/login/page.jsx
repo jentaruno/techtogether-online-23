@@ -9,6 +9,7 @@ export default function Login() {
     const {user, error, isLoading} = useUser();
     const tags = ["abc", "toxic", "race", "desc"];
     const petitions = ["1", "2", "3", "4"];
+    //ask how to relate petitions data to user because this is the auth0 user 
 
     if (isLoading) return <main className={styles.main}>
         <div>Loading...</div>
@@ -22,14 +23,17 @@ export default function Login() {
         return (
             <main className="w-full h-screen ">
                 <NavbarMain/>
-                <div className='flex justify-center items-center h-screen gap-20'>
-                    <img src={user.picture}/>
+                <div className='h-screen flex justify-center items-center  bg-primary-lightblue '>
+
+                    <div className="flex p-30 rounded-lg gap-20 px-28 py-16 justify-center  items-center bg-white">
+                    
+                    <img src={user.picture} style={{ width: '200px', height: '200px' }} />
+                    
                     <div className="">
-                        <p>Name: {user.name}</p>
-                        <p>Position: {user.position}</p>
-                        <p>Company: {user.company}</p>
-                        <p>Email: {user.email}</p>
-                        <p className='flex flex-row mt-2  text-primary-darkblue'> Tags:
+                        <p className='flex mt-4 flex-row mt-2  text-primary-darkblue'>Name: <p className='text-black ml-3'>{user.name}</p></p>
+                        
+                        <p className='flex mt-4 flex-row mt-2  text-primary-darkblue'>Email: <p className='text-black ml-3'>{user.email}</p></p>
+                        <p className='flex mt-4 flex-row mt-2  text-primary-darkblue'> Tags:
                         {tags && tags.map((item, key) => (
                             <div className="flex flex-row gap-3">
                                 <ul className="flex flex-row text-white">
@@ -39,35 +43,44 @@ export default function Login() {
                             
                         ))}
                         </p>
-                        <p className='flex flex-row mt-2'> Petitions Created:
+                        <div className="flex flex-row mt-4">
+                            <p className='text-primary-darkblue'> Petitions Created: </p>
+                            <p className='flex flex-row'>
+                                {petitions && petitions.map((item, key) => (
+                                    <div className="flex flex-row gap-3">
+                                        <ul className="flex flex-row ">
+                                            <li className='transform  mx-2 px-1 '> {item} </li>
+                                        </ul>
+                                    </div>
+                                    
+                                ))}
+                            </p>
+                        </div>
+                        <p className='flex flex-row text-primary-darkblue mt-2 mb-10'> Petitions Signed:
                         {petitions && petitions.map((item, key) => (
                             <div className="flex flex-row gap-3">
-                                <ul className="flex flex-row text-white">
-                                    <li className='transform  mx-2 px-1 '> {item} </li>
+                                <ul className="flex flex-row t">
+                                    <li className='transform text-black mx-2 px-1  '> {item} </li>
                                 </ul>
                             </div>
                             
                         ))}
                         </p>
-                        <p className='flex flex-row mt-2'> Petitions Signed:
-                        {petitions && petitions.map((item, key) => (
-                            <div className="flex flex-row gap-3">
-                                <ul className="flex flex-row text-white">
-                                    <li className='transform  mx-2 px-1  '> {item} </li>
-                                </ul>
-                            </div>
-                            
-                        ))}
-                        </p>
-                        <a href="/api/auth/logout">Logout</a>
+                      
+                            <a className ="bg-primary-darkblue text-white transform hover:scale-125 rounded-lg p-2 mt-10 " href="/api/auth/logout">Logout</a>
+                        
+                        
                     </div>
-                    
+
+                    </div>
                 </div>
             </main>
         );
     }
 
     return <main className={styles.main}>
-        <a href="/api/auth/login">Login</a>
+        <div className="flex w-full h-screen text-xl text-primary-darkblue justify-center items-center">
+            <a href="/api/auth/login">Login</a>
+        </div>
     </main>;
 }
