@@ -25,8 +25,7 @@ async function getUser(userId) {
 // Takes name, email, company, and tags
 // * tags is an array of strings!
 // Adds user to DB
-// TODO: position and tags are optional
-async function newUser(name, email, company, position, tags) {
+async function newUser(name, email, company, position = undefined, tags = []) {
     try {
         const user = {
             "petitions": {
@@ -36,8 +35,12 @@ async function newUser(name, email, company, position, tags) {
             "name": name,
             "email": email,
             "company": company,
-            "position": position,
-            "tags": tags
+        }
+        if (position) {
+            user.position = position;
+        }
+        if (tags.length > 0) {
+            user.tags = tags;
         }
         const response = await fetch(SERVER_LINK + '/user/create', {
             method: 'POST',
@@ -59,9 +62,10 @@ async function newUser(name, email, company, position, tags) {
     }
 }
 
-// Input userId and new user
+// Takes userId and new user (object)
+// Note: new user can be an object with only parts of the user's data that was modified
+// e.g. just { company: "New Company", tags: ["Healthcare", "Tech"] }
 // Updates existing user in DB
-// TODO: take fields for newUser
 async function editUser(userId, newUser) {
     try {
         const currentUser = await fetch(SERVER_LINK + '/user/get/' + userId, {
@@ -91,3 +95,5 @@ async function editUser(userId, newUser) {
         alert('An error occurred');
     }
 }
+
+export {getUser, newUser, editUser};

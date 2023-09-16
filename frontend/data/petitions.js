@@ -116,3 +116,5 @@ async function signPetition(petitionId, userId) {
         alert('An error occurred');
     }
 }
+
+export {getAllPetitions, getPetition, createPetition, deletePetition, signPetition};
