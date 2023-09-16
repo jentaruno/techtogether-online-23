@@ -29,7 +29,8 @@ module.exports = {
       colors: {
         'primary-darkgreen': '#064636',
         'primary-lightgreen': '#F4F6F4',
-        'primary-darkblue': '#03045e',
+        'primary-darkblue': '033F84',
+        'primary-lighblue': 'C3FDFA',
       }
       
     },
