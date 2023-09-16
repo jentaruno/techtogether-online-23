@@ -1,7 +1,10 @@
-import {SERVER_LINK} from "@data/utils";
+const SERVER_LINK = require("./utils");
 
 // Takes userId
 // Returns user schema
+// * Note: Deleted petitions are not deleted from user's list of signed and created petitions.
+//         To get around this, for each petition, check if a petition with that ID truly exists
+//         before using its data in the front-end
 async function getUser(userId) {
     try {
         const response = await fetch(SERVER_LINK + '/user/get/' + userId, {
@@ -14,16 +17,16 @@ async function getUser(userId) {
         if (response.ok) {
             return await response.json();
         } else {
-            alert('Error getting petition');
+            console.log('Error getting petition');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred');
+        console.log('An error occurred');
     }
 }
 
 // Takes name, email, company, and tags
-// * tags is an array of strings!
+// * Note: tags is an array of strings!
 // Adds user to DB
 async function newUser(name, email, company, position = undefined, tags = []) {
     try {
@@ -52,18 +55,18 @@ async function newUser(name, email, company, position = undefined, tags = []) {
 
         if (response.ok) {
             const responseData = await response.json();
-            alert(responseData.message);
+            console.log(responseData.message);
         } else {
-            alert('Error creating user');
+            console.log('Error creating user');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred');
+        console.log('An error occurred');
     }
 }
 
 // Takes userId and new user (object)
-// Note: new user can be an object with only parts of the user's data that was modified
+// * Note: new user can be an object with only parts of the user's data that was modified
 // e.g. just { company: "New Company", tags: ["Healthcare", "Tech"] }
 // Updates existing user in DB
 async function editUser(userId, newUser) {
@@ -88,12 +91,12 @@ async function editUser(userId, newUser) {
         if (response.ok) {
             return await response.json();
         } else {
-            alert('Error getting petition');
+            console.log('Error getting petition');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred');
+        console.log('An error occurred');
     }
 }
 
-export {getUser, newUser, editUser};
+module.exports = {getUser, newUser, editUser};

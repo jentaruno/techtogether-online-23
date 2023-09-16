@@ -1,4 +1,4 @@
-import {SERVER_LINK} from "@data/utils";
+const SERVER_LINK = require("./utils");
 
 // Returns all petitions in database
 async function getAllPetitions() {
@@ -13,11 +13,13 @@ async function getAllPetitions() {
         if (response.ok) {
             return await response.json();
         } else {
-            alert('Error getting all petitions');
+            console.log('Error getting all petitions');
+            return 'Error getting all petitions';
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred');
+        console.log('An error occurred');
+        return error;
     }
 }
 
@@ -25,7 +27,7 @@ async function getAllPetitions() {
 // Returns petition schema
 async function getPetition(petitionId) {
     try {
-        const response = await fetch(SERVER_LINK + '/petitions/' + petitionId, {
+        const response = await fetch(SERVER_LINK + '/petitions/get/' + petitionId, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,11 +37,11 @@ async function getPetition(petitionId) {
         if (response.ok) {
             return await response.json();
         } else {
-            alert('Error getting petition');
+            console.log('Error getting petition');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred');
+        console.log('An error occurred');
     }
 }
 
@@ -57,13 +59,13 @@ async function createPetition(petition) {
 
         if (response.ok) {
             const responseData = await response.json();
-            alert(responseData.message);
+            console.log(responseData.message);
         } else {
-            alert('Error creating petition');
+            console.log('Error creating petition');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred');
+        console.log('An error occurred');
     }
 }
 
@@ -80,13 +82,13 @@ async function deletePetition(petitionId) {
 
         if (response.ok) {
             const responseData = await response.json();
-            alert('Deleted petition' + petitionId);
+            console.log('Deleted petition' + petitionId);
         } else {
-            alert('Error creating petition');
+            console.log('Error creating petition');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred');
+        console.log('An error occurred');
     }
 }
 
@@ -107,14 +109,14 @@ async function signPetition(petitionId, userId) {
 
         if (response.ok) {
             await response.json();
-            alert(userId + ' signed petition ' + petitionId);
+            console.log(userId + ' signed petition ' + petitionId);
         } else {
-            alert('Error signing petition');
+            console.log('Error signing petition');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred');
+        console.log('An error occurred');
     }
 }
 
-export {getAllPetitions, getPetition, createPetition, deletePetition, signPetition};
+module.exports = {getAllPetitions, getPetition, createPetition, deletePetition, signPetition};
