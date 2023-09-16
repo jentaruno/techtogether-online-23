@@ -29,7 +29,9 @@ const Navbar = () => {
               <BiSearchAlt size={24} onClick ={toggleSearch} />
             </li>
             <li className="p-4 mr-8  transform hover:scale-125  transition duration-500">
-              <BsPersonCircle size={24}/>
+              <Link href="/login" >
+                <BsPersonCircle size={24}/>
+              </Link>
             </li>  
           </ul>
           
