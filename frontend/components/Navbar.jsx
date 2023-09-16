@@ -8,49 +8,32 @@ import {BsPersonCircle} from 'react-icons/bs';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [smallMenu, setSmallMenu] = useState(false)
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-    setSmallMenu(false);
-  };
-
-  const toggleSmallMenu = () => {
-    setSmallMenu(!smallMenu);
-  }
-
-  const closeSmallMenu = () => {
-    setSmallMenu(false);
-  };
-
+  //for toggling the search input field
   const toggleSearch = () => {
-    
+        setIsOpen(!isOpen);
   }
 
 
   return (
     <div>
-      <div className={`flex items-end fixed top-0 w-full z-10 ease-in duration-300 bg-primary-darkblue border-b-2 border-primary-darkblue`}>
-        <div
-          className={`${
-            isOpen ? "flex flex-col h-screen" : "hidden"
-          } sm:flex flex-col sm:flex-row sm:w-full font-medium text-gray-500 gap-4`}
-        >
-          <ul className={`flex flex-col md:flex-row ism:flex mx-auto text-lg 2xl:text-2xl text-gray-600`}>
-            
-            <li className="p-4 mr-8 transform hover:scale-125  transition duration-500">
-              <BiSearchAlt size={24} />
+      <div className="flex items-end justify-end fixed top-0 w-full z-10 ease-in duration-300  border-b-2 bg-primary-darkblue">
+          <ul className="flex items-end text-white ">  
+          {isOpen && (
+            <div>
+              <input type="text" id="simple-search" class="mb-2 bg-gray-50 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full pl-5 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " placeholder="Search branch name..." required/>
+    
+            </div>
+          )}
+            <li className="p-4 mr-8 ml-8 transform hover:scale-125  transition duration-500">
+              <BiSearchAlt size={24} onClick ={toggleSearch} />
             </li>
             <li className="p-4 mr-8  transform hover:scale-125  transition duration-500">
               <BsPersonCircle size={24}/>
-            </li>
-            
+            </li>  
           </ul>
-        </div>
+          
+        
       </div>
     </div>
   );

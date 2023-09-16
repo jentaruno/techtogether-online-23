@@ -1,5 +1,6 @@
 import 'tailwindcss/tailwind.css';
 import "@styles/globals.css";
+import {UserProvider} from '@auth0/nextjs-auth0/client';
 
 import { Inter } from 'next/font/google'
 
@@ -12,7 +13,9 @@ export const metadata = {
 
 const RootLayout = ({children}) => {
   return (
+    
     <html lang="en">
+      <UserProvider>
         <body>
             <div className="flex flex-col h-full w-screen">
                 
@@ -22,7 +25,9 @@ const RootLayout = ({children}) => {
                 
             </div>
         </body>
+        </UserProvider>
     </html>
+
   )
 }
 
