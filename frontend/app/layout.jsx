@@ -1,29 +1,32 @@
 import 'tailwindcss/tailwind.css';
 import "@styles/globals.css";
 
-import { Inter } from 'next/font/google'
+import {Inter} from 'next/font/google'
+import {UserProvider} from "@auth0/nextjs-auth0/client";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({subsets: ['latin']})
 
 export const metadata = {
-  title: 'Create Next App',
-  description: '',
+    title: 'Create Next App',
+    description: '',
 }
 
 const RootLayout = ({children}) => {
-  return (
-    <html lang="en">
-        <body>
+    return (
+        <html lang="en">
+        <UserProvider>
+            <body>
             <div className="flex flex-col h-full w-screen">
-                
+
                 <main className=''>
                     {children}
                 </main>
-                
+
             </div>
-        </body>
-    </html>
-  )
+            </body>
+        </UserProvider>
+        </html>
+    )
 }
 
 export default RootLayout
