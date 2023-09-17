@@ -14,7 +14,7 @@ const NavbarMain = () => {
 
     return (
         <div>
-            <div className="flex  fixed top-0 w-full z-10 ease-in duration-300  border-b-2 bg-primary-darkblue">
+            <div className="flex w-full z-10 ease-in duration-300  border-b-2 bg-primary-darkblue">
                 <Link href="./">
                     <p className="text-primary-lightblue text-lg font-bold py-3 ml-7">
                         WorkVoice

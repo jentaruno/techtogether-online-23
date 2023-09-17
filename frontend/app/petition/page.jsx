@@ -1,14 +1,14 @@
+import React from "react";
 import Navbar from "@components/Navbar";
 import Petition from "@components/Petition";
-import React from "react";
+import {Box} from "@mui/material";
 
 export default function Page() {
-    const signers = [];
 
     return (
-        <div className="flex flex-col w-full items-center">
+        <main className="w-full h-screen ">
             <Navbar/>
-            <div className={"w-2/3 mt-12"}>
+            <Box p={2} sx={{boxShadow: 1, width: '20rem'}}>
                 <Petition
                     petition={{
                         title: "Title",
@@ -17,11 +17,7 @@ export default function Page() {
                         description: "Description ..."
                     }}
                 />
-                <p>{signers.length + " people have signed"}</p>
-                <button className="bg-primary-darkblue text-white transform hover:scale-125 rounded-lg p-2 mt-2">
-                    Sign this petition
-                </button>
-            </div>
-        </div>
-    )
+            </Box>
+        </main>
+    );
 }
