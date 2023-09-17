@@ -3,14 +3,18 @@
 import Navbar from "@components/Navbar";
 import Petition from "@components/Petition";
 import React, {useEffect, useState} from "react";
-import {getPetition} from "@data/petitions";
-import {usePathname} from "@node_modules/next/dist/client/components/navigation";
+import {getPetition, signPetition} from "@data/petitions";
+import {usePathname, useRouter} from "@node_modules/next/dist/client/components/navigation";
+import {useUser} from "@node_modules/@auth0/nextjs-auth0/dist/client";
+import {CircularProgress} from "@node_modules/@mui/material";
 
 export default function Page() {
+    const {user, error, isLoading} = useUser();
+    const router = useRouter();
+
     const url = usePathname();
-    const parts = url.split("/"); // Split the URL by "/"
-    const id = parts[parts.length - 1]; // Get the last part of the array
-    console.log(id);
+    const parts = url.split("/");
+    const id = parts[parts.length - 1];
     const [petition, setPetition] = useState();
 
     useEffect(() => {
@@ -19,7 +23,17 @@ export default function Page() {
         }
 
         fetchData();
-    })
+    }, [])
+
+    const handleSignPetition = async () => {
+        try {
+            await signPetition(id, user.email);
+            router.refresh();
+        } catch (e) {
+            router.refresh();
+        }
+
+    }
 
     return (
         <div className="flex flex-col w-full items-center">
@@ -32,16 +46,18 @@ export default function Page() {
                                 title: petition.title,
                                 company: petition.company,
                                 location: petition.location,
-                                description: petition.description
+                                description: petition.description,
+                                signersCount: petition.signers.length
                             }}
                         />
-                        <p>{petition.signers.length + " people have signed"}</p>
                         <button
-                            className="bg-primary-darkblue text-white transform hover:scale-125 rounded-lg p-2 mt-2">
+                            className="bg-primary-darkblue text-white transform hover:scale-125 rounded-lg p-2 mt-2"
+                            onClick={handleSignPetition}
+                        >
                             Sign this petition
                         </button>
                     </div>
-                    : <p>Loading...</p>}
+                    : <CircularProgress/>}
             </div>
         </div>
     )

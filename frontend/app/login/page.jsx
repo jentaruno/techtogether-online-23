@@ -2,6 +2,8 @@
 import styles from "@/app/page.module.css";
 import NavbarMain from '@components/NavbarMain';
 import {useUser} from "@node_modules/@auth0/nextjs-auth0/dist/client";
+import {CircularProgress} from "@node_modules/@mui/material";
+import React from "react";
 
 export default function Login() {
     const {user, error, isLoading} = useUser();
@@ -12,7 +14,7 @@ export default function Login() {
     //ask how to relate petitions data to user because this is the auth0 user 
 
     if (isLoading) return <main className={styles.main}>
-        <div>Loading...</div>
+        <CircularProgress/>
     </main>;
     if (error) return <main className={styles.main}>
         <div>{error.message}</div>

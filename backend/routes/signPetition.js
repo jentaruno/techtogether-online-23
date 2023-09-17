@@ -13,7 +13,7 @@ router.patch('/:petitionId', async (req, res) => {
     try {
         const petition = await Petitions.findById(req.params.petitionId);
         const {email} = req.body;
-        const user = await Users.find({email: email});
+        const user = await Users.findOne({email: email});
         const userId = user._id;
 
         // If the petition with the given ID doesn't exist, return an error message

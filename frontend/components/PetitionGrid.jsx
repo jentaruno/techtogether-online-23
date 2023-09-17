@@ -14,7 +14,8 @@ export default function PetitionGrid({petitionsArray}) {
                         title: e.title,
                         company: e.company,
                         location: e.location,
-                        description: e.description
+                        description: e.description,
+                        signersCount: e.signers.length
                     }}
                 />
             </Box>

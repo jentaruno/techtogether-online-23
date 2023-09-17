@@ -50,7 +50,6 @@ async function getPetition(petitionId) {
 async function createPetition(email, petition) {
     try {
         const body = JSON.stringify({email: email, petition: petition});
-        console.log(body);
         const response = await fetch(SERVER_LINK + '/petitions/create', {
             method: 'POST',
             headers: {
@@ -97,21 +96,22 @@ async function deletePetition(petitionId) {
 // Takes petition ID, user ID
 // Add to user's signed petitions
 // Add this user's to the petition's signers
-async function signPetition(petitionId, userId) {
+async function signPetition(petitionId, email) {
     try {
+        console.log(petitionId, email)
         const response = await fetch(SERVER_LINK + '/petitions/sign/' + petitionId, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                "userId": userId
+                "email": email
             }),
         });
 
         if (response.ok) {
             await response.json();
-            console.log(userId + ' signed petition ' + petitionId);
+            console.log(email + ' signed petition ' + petitionId);
         } else {
             console.log('Error signing petition');
         }

@@ -1,4 +1,5 @@
 import {Box} from "@mui/material";
+import React from "react";
 
 export default function Petition({petition}) {
     return (
@@ -13,6 +14,8 @@ export default function Petition({petition}) {
             </h3>
             <p>{petition.location}</p>
             <p className="text-sm  mb-10">{petition.description}</p>
+            <p>{petition.signersCount + " people have signed"}</p>
+
         </Box>
     )
 }
