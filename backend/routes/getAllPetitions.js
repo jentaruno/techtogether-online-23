@@ -9,6 +9,7 @@ router.get('', async (req, res) => {
     await connectDatabase(res)
     try {
         const petitions = await Petitions.find();
+        <Page title='testing title' company='testing company' location='testing location' description='testing desc'/>
         res.status(200).send(petitions);
     } catch (error) {
         console.error('Error fetching data:', error);
