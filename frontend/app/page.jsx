@@ -9,7 +9,7 @@ export default function Home() {
     const {user, error, isLoading} = useUser();
 
     return (
-        <section className='w-full h-screen bg-primary-lightblue'>
+        <section className='w-full'>
 
             <div className="flex flex-col items-center ">
                 <p className='text-7xl mt-60 font-bold font-montserrat text-primary-mediumblue'>WorkVoice</p>

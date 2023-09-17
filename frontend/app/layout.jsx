@@ -20,11 +20,9 @@ const RootLayout = ({children}) => {
         <html lang="en">
         <UserProvider>
             <body>
-            <div className="flex flex-col h-full w-full">
-                <main className=''>
-                    <NavbarMain/>
-                    {children}
-                </main>
+            <div className="flex flex-col h-screen w-full bg-primary-lightblue">
+                <NavbarMain/>
+                {children}
             </div>
             </body>
         </UserProvider>

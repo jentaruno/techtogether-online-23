@@ -30,11 +30,11 @@ const PetitionForm = () => {
     };
 
     return (
-        <div className="h-screen w-full">
+        <div className=" w-full">
 
             <div className="h-full flex flex-col justify-center items-center bg-primary-lightblue">
                 <div
-                    className="flex flex-col items-center rounded-lg gap-20  bg-white max-w-2xl mt-60 rounded-lg mb-40">
+                    className="flex flex-col items-center rounded-lg gap-20  bg-white max-w-2xl mt-12 rounded-lg mb-40">
                     <div className="text-4xl mt-16 text-primary-darkblue font-bold ">Create Your Voice</div>
                     <form onSubmit={handleSubmit}>
                         <div className="flex flex-col justify-left items-start px-24 pb-16">

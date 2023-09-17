@@ -16,13 +16,14 @@ const NavbarMain = () => {
     return (
         <div className="w-full z-10 ease-in duration-300 bg-primary-darkblue">
             <div className={"flex flex-row p-4 justify-between items-center"}>
-                <div className={"flex flex-row items-center space-x-4"}>
+                <div className={"flex flex-row items-center space-x-6"}>
                     <Link href="/">
                         <p className="text-primary-lightblue text-lg font-bold">
                             WorkVoice
                         </p>
                     </Link>
                     <Link href={"/petition"} className={"text-primary-lightblue"}>Petitions</Link>
+                    <Link href={"/create"} className={"text-primary-lightblue"}>Create Petition</Link>
                 </div>
                 <Link href="/login">
                     <BsPersonCircle fill={"white"} size={24}/>

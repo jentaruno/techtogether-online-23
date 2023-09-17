@@ -33,10 +33,10 @@ export default function Login() {
         <div>{error.message}</div>
     </main>;
 
-    if (user) {
+    if (userData) {
         return (
-            <main className="w-full h-screen ">
-                <div className='h-screen flex justify-center p-12  bg-primary-lightblue '>
+            <main className="w-full  ">
+                <div className=' flex justify-center p-12  bg-primary-lightblue '>
                     <div className={"flex flex-col"}>
                         <div className="flex p-10 rounded-lg gap-4 justify-center  items-center bg-white">
 
@@ -67,28 +67,11 @@ export default function Login() {
                                 {/*</p>*/}
                             </div>
                         </div>
-                        <div className="flex flex-row mt-4">
-                            <p className='text-primary-darkblue'>Petitions Created: </p>
-                            <p className='flex flex-row'>
-                                {createdPetitions && createdPetitions.map((item, key) => (
-                                    <div className="flex flex-row gap-3">
-                                        <ul className="flex flex-row ">
-                                            <li className='transform  mx-2 px-1 '> {item} </li>
-                                        </ul>
-                                    </div>
-
-                                ))}
-                            </p>
-                        </div>
-                        <p className='flex flex-row text-primary-darkblue mt-2 mb-10'> Petitions Signed:
-                            {signedPetitions && signedPetitions.map((item, key) => (
-                                <div className="flex flex-row gap-3">
-                                    <ul className="flex flex-row t">
-                                        <li className='transform text-black mx-2 px-1  '> {item} </li>
-                                    </ul>
-                                </div>
-
-                            ))}
+                        <p className='flex flex-row text-primary-darkblue mt-6 mb-2'>
+                            {userData.petitions.created.length + " petitions created"}
+                        </p>
+                        <p className='flex flex-row text-primary-darkblue mt-2 mb-10'>
+                            {userData.petitions.signed.length + " petitions signed"}
                         </p>
                     </div>
                 </div>
@@ -97,7 +80,7 @@ export default function Login() {
     }
 
     return <main className={styles.main}>
-        <div className="flex w-full h-screen text-xl text-primary-darkblue justify-center ">
+        <div className="flex w-full  text-xl text-primary-darkblue justify-center ">
             <a className="bg-primary-lightblue rounded-lg p-4 h-16" href="/api/auth/login">Login</a>
         </div>
     </main>;
