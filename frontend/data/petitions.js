@@ -45,16 +45,18 @@ async function getPetition(petitionId) {
     }
 }
 
-// Takes a petition schema
+// Takes an email and petition schema
 // Updates to database
-async function createPetition(petition) {
+async function createPetition(email, petition) {
     try {
+        const body = JSON.stringify({email: email, petition: petition});
+        console.log(body);
         const response = await fetch(SERVER_LINK + '/petitions/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(petition),
+            body: body,
         });
 
         if (response.ok) {

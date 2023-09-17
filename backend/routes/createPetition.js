@@ -14,6 +14,7 @@ router.post('', async (req, res) => {
         const {email, petition} = req.body;
         const user = await Users.find({email: email});
         const userId = user._id;
+        console.error(user, userId);
         let newPetition = await Petitions.create(petition);
         let petitionId = newPetition._id;
         await addPetitionToUser(userId, petitionId, "created");

@@ -3,7 +3,6 @@
 import Navbar from '@components/Navbar';
 import {createPetition} from '@data/petitions';
 import React, {useState} from 'react';
-import {getUserIdByEmail} from "@data/user";
 import {useUser} from "@node_modules/@auth0/nextjs-auth0/dist/client";
 
 const PetitionForm = () => {
@@ -26,8 +25,9 @@ const PetitionForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const user = getUserIdByEmail()
-        await createPetition(formData);
+        const petition = {...formData};
+        petition.poster = user.email;
+        await createPetition(user.email, petition);
     };
 
     return (
