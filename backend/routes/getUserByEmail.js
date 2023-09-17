@@ -9,7 +9,7 @@ const router = express.Router()
 router.get('/:email', async (req, res) => {
     await connectDatabase(res);
     try {
-        const user = await Users.find({email: req.params.email})
+        const user = await Users.findOne({email: req.params.email})
         res.status(200).send(user);
     } catch (error) {
         console.error("error" + error);

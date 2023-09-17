@@ -9,11 +9,13 @@ export default function Petition({petition}) {
                     {petition.title}
                 </h1>
             </a>
-            <h3 className="text-2xl  text-primary-darkblue mb-10">
+            <h3 className="text-2xl  text-primary-darkblue">
                 {petition.company}
             </h3>
-            <p>{petition.location}</p>
-            <p className="text-sm  mb-10">{petition.description}</p>
+            <p className={'mb-10'}>{petition.location}</p>
+            <p className="text-sm  mb-10">
+                {petition.description}
+            </p>
             <p>{petition.signersCount + " people have signed"}</p>
 
         </Box>

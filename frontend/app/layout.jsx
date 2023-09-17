@@ -3,6 +3,8 @@ import "@styles/globals.css";
 import {UserProvider} from '@auth0/nextjs-auth0/client';
 
 import {Inter} from 'next/font/google'
+import NavbarMain from "@components/NavbarMain";
+import React from "react";
 
 
 const inter = Inter({subsets: ['latin']})
@@ -13,23 +15,22 @@ export const metadata = {
 }
 
 const RootLayout = ({children}) => {
-  return (
-    
-    <html lang="en">
-      <UserProvider>
-        <body>
-            <div className="flex flex-col h-full w-screen">
+    return (
 
+        <html lang="en">
+        <UserProvider>
+            <body>
+            <div className="flex flex-col h-full w-full">
                 <main className=''>
+                    <NavbarMain/>
                     {children}
                 </main>
-
             </div>
-        </body>
+            </body>
         </UserProvider>
-    </html>
+        </html>
 
-  )
+    )
 }
 
 export default RootLayout

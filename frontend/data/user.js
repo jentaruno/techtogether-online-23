@@ -30,7 +30,7 @@ async function getUser(userId) {
 // * Note: Deleted petitions are not deleted from user's list of signed and created petitions.
 //         To get around this, for each petition, check if a petition with that ID truly exists
 //         before using its data in the front-end
-async function getUserIdByEmail(email) {
+async function getUserByEmail(email) {
     try {
         const response = await fetch(SERVER_LINK + '/user/get-by-email/' + email, {
             method: 'GET',
@@ -40,8 +40,7 @@ async function getUserIdByEmail(email) {
         });
 
         if (response.ok) {
-            const json = response.json();
-            return json._id;
+            return response.json();
         } else {
             console.log('Error getting user');
         }
@@ -125,4 +124,4 @@ async function editUser(userId, newUser) {
     }
 }
 
-module.exports = {getUser, getUserIdByEmail, newUser, editUser};
+module.exports = {getUser, getUserByEmail, newUser, editUser};

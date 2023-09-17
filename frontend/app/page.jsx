@@ -2,7 +2,6 @@
 
 import 'tailwindcss/tailwind.css';
 import "@styles/globals.css";
-import Navbar from '@components/Navbar';
 import Link from 'next/link';
 import {useUser} from "@node_modules/@auth0/nextjs-auth0/dist/client";
 
@@ -11,7 +10,7 @@ export default function Home() {
 
     return (
         <section className='w-full h-screen bg-primary-lightblue'>
-            <Navbar/>
+
             <div className="flex flex-col items-center ">
                 <p className='text-7xl mt-60 font-bold font-montserrat text-primary-mediumblue'>WorkVoice</p>
                 <p className='text-2xl  mt-10 font-montserrat text-primary-mediumblue'>tagline related to striving for

@@ -1,6 +1,5 @@
 "use client"
 
-import Navbar from "@components/Navbar";
 import Petition from "@components/Petition";
 import React, {useEffect, useState} from "react";
 import {getPetition, signPetition} from "@data/petitions";
@@ -37,7 +36,7 @@ export default function Page() {
 
     return (
         <div className="flex flex-col w-full items-center">
-            <Navbar/>
+
             <div className={"w-2/3 mt-12"}>
                 {petition
                     ? <div>
