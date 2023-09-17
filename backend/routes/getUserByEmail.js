@@ -4,18 +4,16 @@ const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router()
 
-// Input user schema
-// Adds user to DB
-router.post('', async (req, res) => {
+// Input userId
+// Returns user schema
+router.get('/:email', async (req, res) => {
     await connectDatabase(res);
     try {
-        const user = req.body;
-        let newUser = await Users.create(user);
-        let userId = newUser._id;
-        res.status(200).send(userId);
+        const user = await Users.find({email: req.params.email})
+        res.status(200).send(user);
     } catch (error) {
         console.error("error" + error);
-        res.status(400).send("Error creating user");
+        res.status(400).send("Error fetching user");
     } finally {
         mongoose.connection.close();
     }
