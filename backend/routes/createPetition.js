@@ -2,6 +2,7 @@ const {connectDatabase, addPetitionToUser} = require("../utils");
 const {Petitions} = require("../models/petition");
 const mongoose = require("mongoose");
 const express = require("express");
+const {Users} = require("../models/user");
 const router = express.Router()
 
 // Takes petition schema and user ID
@@ -10,7 +11,9 @@ const router = express.Router()
 router.post('', async (req, res) => {
     await connectDatabase(res)
     try {
-        const { userId, petition } = req.body;
+        const {email, petition} = req.body;
+        const user = await Users.find({email: email});
+        const userId = user._id;
         let newPetition = await Petitions.create(petition);
         let petitionId = newPetition._id;
         await addPetitionToUser(userId, petitionId, "created");

@@ -67,11 +67,8 @@ export default function Login() {
 
                                 ))}
                             </p>
-
                             <a className="bg-primary-darkblue text-white transform hover:scale-125 rounded-lg p-2 mt-10 "
                                href="/api/auth/logout">Logout</a>
-
-
                         </div>
 
                     </div>

@@ -27,15 +27,12 @@ const petitionSchema = mongoose.Schema(
             required: false
         },
         poster: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: String, // email
             ref: 'users',
             required: [true, "Missing user"]
         },
         signers: {
-            type: [{
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'users',
-            }],
+            type: [String], // array of emails
             required: false
         },
         // Comments on the petition
@@ -44,4 +41,4 @@ const petitionSchema = mongoose.Schema(
 
 const Petitions = mongoose.model("Petitions", petitionSchema, "petitions")
 
-module.exports = { petitionSchema, Petitions }
+module.exports = {petitionSchema, Petitions}
