@@ -17,7 +17,7 @@ async function getUser(userId) {
         if (response.ok) {
             return await response.json();
         } else {
-            console.log('Error getting petition');
+            console.log('Error getting user');
         }
     } catch (error) {
         console.error('Error:', error);

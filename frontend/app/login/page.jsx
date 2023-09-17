@@ -4,11 +4,26 @@ import {useUser} from '@auth0/nextjs-auth0/client';
 import styles from "@/app/page.module.css";
 import Image from 'next/image';
 import NavbarMain from '@components/NavbarMain';
+import { getUser } from '@data/user';
+import { useEffect } from 'react';
 
 export default function Login() {
     const {user, error, isLoading} = useUser();
-    const tags = ["abc", "toxic", "race", "desc"];
-    const petitions = ["1", "2", "3", "4"];
+
+    //bad code bad syntax routes not configured yet
+    //const userfull = getUser(user); 
+
+    //again issue with routes
+    useEffect(() => {
+        // Assuming you have a userId variable defined somewhere
+        const userfull = getUser(user); 
+        
+        
+      }, []);
+
+    const tags = [];
+    const createdPetitions = [];
+    const signedPetitions = [];
     //ask how to relate petitions data to user because this is the auth0 user 
 
     if (isLoading) return <main className={styles.main}>
@@ -46,7 +61,7 @@ export default function Login() {
                         <div className="flex flex-row mt-4">
                             <p className='text-primary-darkblue'> Petitions Created: </p>
                             <p className='flex flex-row'>
-                                {petitions && petitions.map((item, key) => (
+                                {createdPetitions && createdPetitions.map((item, key) => (
                                     <div className="flex flex-row gap-3">
                                         <ul className="flex flex-row ">
                                             <li className='transform  mx-2 px-1 '> {item} </li>
@@ -57,7 +72,7 @@ export default function Login() {
                             </p>
                         </div>
                         <p className='flex flex-row text-primary-darkblue mt-2 mb-10'> Petitions Signed:
-                        {petitions && petitions.map((item, key) => (
+                        {signedPetitions && signedPetitions.map((item, key) => (
                             <div className="flex flex-row gap-3">
                                 <ul className="flex flex-row t">
                                     <li className='transform text-black mx-2 px-1  '> {item} </li>
@@ -79,8 +94,8 @@ export default function Login() {
     }
 
     return <main className={styles.main}>
-        <div className="flex w-full h-screen text-xl text-primary-darkblue justify-center items-center">
-            <a href="/api/auth/login">Login</a>
+        <div className="flex w-full h-screen text-xl text-primary-darkblue justify-center ">
+            <a className="bg-primary-lightblue rounded-lg p-4 h-16" href="/api/auth/login">Login</a>
         </div>
     </main>;
 }

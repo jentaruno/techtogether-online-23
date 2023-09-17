@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from '@components/Navbar';
+import { createPetition } from '@data/petitions';
 import React, { useState } from 'react';
 
 const PetitionForm = () => {
@@ -20,24 +21,7 @@ const PetitionForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('/your-api-endpoint', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        console.log('Petition created successfully.');
-        // Reset the form or perform any other actions as needed.
-      } else {
-        console.error('Error creating petition.');
-      }
-    } catch (error) {
-      console.error('Error creating petition:', error);
-    }
+    createPetition(e);
   };
 
   return (
