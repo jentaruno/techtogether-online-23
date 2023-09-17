@@ -25,6 +25,32 @@ async function getUser(userId) {
     }
 }
 
+// Takes user email
+// Returns user schema
+// * Note: Deleted petitions are not deleted from user's list of signed and created petitions.
+//         To get around this, for each petition, check if a petition with that ID truly exists
+//         before using its data in the front-end
+async function getUserIdByEmail(email) {
+    try {
+        const response = await fetch(SERVER_LINK + '/user/get-by-email/' + email, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            const json = response.json();
+            return json._id;
+        } else {
+            console.log('Error getting user');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        console.log('An error occurred');
+    }
+}
+
 // Takes name, email, company, and tags
 // * Note: tags is an array of strings!
 // Adds user to DB
@@ -99,4 +125,4 @@ async function editUser(userId, newUser) {
     }
 }
 
-module.exports = {getUser, newUser, editUser};
+module.exports = {getUser, getUserIdByEmail, newUser, editUser};
